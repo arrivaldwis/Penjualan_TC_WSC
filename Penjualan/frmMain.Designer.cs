@@ -95,9 +95,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(342, 84);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Total Bunga:";
+            this.label4.Text = "Biaya Bunga:";
             // 
             // label5
             // 

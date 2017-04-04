@@ -45,7 +45,10 @@ namespace Penjualan
             int no = int.Parse(no_faktur);
             var pembayaran = data.Pembayarans.Where(x => x.no_faktur == no);
 
-            foreach(var a in pembayaran)
+            int day = (DateTime.Now.Date - pembayaran.First().Transaksi.tgl_deadline.Date).Days;
+            float calc = (((float)pembayaran.First().Transaksi.bunga / 100) * pembayaran.First().Transaksi.total_biaya) * day;
+
+            foreach (var a in pembayaran)
             {
                 label6.Text = a.no_faktur.ToString();
                 total_bayar += a.jumlah_pembayaran;
@@ -56,7 +59,8 @@ namespace Penjualan
                 NoFaktur = x.no_faktur,
                 Customer = x.Customer.name,
                 JumlahBayar = x.jumlah_pembayaran,
-                TglPembayaran = x.tgl_pembayaran
+                TglPembayaran = x.tgl_pembayaran,
+                BiayaBunga = x.total_bunga
             }).ToList();
             
             if(DateTime.Now.Date < pembayaran.First().Transaksi.tgl_deadline.Date)
@@ -64,8 +68,6 @@ namespace Penjualan
                 label5.Text = "0";
             } else
             {
-                int day = (DateTime.Now.Date - pembayaran.First().Transaksi.tgl_deadline.Date).Days;
-                float calc = (((float)pembayaran.First().Transaksi.bunga / 100) * pembayaran.First().Transaksi.total_biaya) * day;
                 label9.Text = day.ToString();
                 label5.Text = calc.ToString();
             }
