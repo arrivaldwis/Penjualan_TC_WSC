@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_penjualanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="id_customer" />
+    </Key>
+    <Property Name="id_customer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Pembayarans" Relationship="Self.FK_Pembayaran_Customer" FromRole="Customer" ToRole="Pembayaran" />
+    <NavigationProperty Name="Transaksis" Relationship="Self.FK_Transaksi_Customer" FromRole="Customer" ToRole="Transaksi" />
+  </EntityType>
+  <EntityType Name="Pembayaran">
+    <Key>
+      <PropertyRef Name="id_pembayaran" />
+    </Key>
+    <Property Name="id_pembayaran" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="no_faktur" Type="Int32" Nullable="false" />
+    <Property Name="id_customer" Type="Int32" Nullable="false" />
+    <Property Name="jumlah_pembayaran" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Pembayaran_Customer" FromRole="Pembayaran" ToRole="Customer" />
+    <NavigationProperty Name="Transaksi" Relationship="Self.FK_Pembayaran_Transaksi" FromRole="Pembayaran" ToRole="Transaksi" />
+    <Property Name="total_bunga" Type="Int32" Nullable="false" />
+    <Property Name="tgl_pembayaran" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Transaksi">
+    <Key>
+      <PropertyRef Name="no_faktur" />
+    </Key>
+    <Property Name="no_faktur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_customer" Type="Int32" Nullable="false" />
+    <Property Name="tgl_penjualan" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="tgl_deadline" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="total_biaya" Type="Int32" Nullable="false" />
+    <Property Name="bunga" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Transaksi_Customer" FromRole="Transaksi" ToRole="Customer" />
+    <NavigationProperty Name="Pembayarans" Relationship="Self.FK_Pembayaran_Transaksi" FromRole="Transaksi" ToRole="Pembayaran" />
+  </EntityType>
+  <Association Name="FK_Pembayaran_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Pembayaran" Type="Self.Pembayaran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id_customer" />
+      </Principal>
+      <Dependent Role="Pembayaran">
+        <PropertyRef Name="id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaksi_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id_customer" />
+      </Principal>
+      <Dependent Role="Transaksi">
+        <PropertyRef Name="id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pembayaran_Transaksi">
+    <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="1" />
+    <End Role="Pembayaran" Type="Self.Pembayaran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaksi">
+        <PropertyRef Name="no_faktur" />
+      </Principal>
+      <Dependent Role="Pembayaran">
+        <PropertyRef Name="no_faktur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_penjualanEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Pembayarans" EntityType="Self.Pembayaran" />
+    <EntitySet Name="Transaksis" EntityType="Self.Transaksi" />
+    <AssociationSet Name="FK_Pembayaran_Customer" Association="Self.FK_Pembayaran_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Pembayaran" EntitySet="Pembayarans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaksi_Customer" Association="Self.FK_Transaksi_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Transaksi" EntitySet="Transaksis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pembayaran_Transaksi" Association="Self.FK_Pembayaran_Transaksi">
+      <End Role="Transaksi" EntitySet="Transaksis" />
+      <End Role="Pembayaran" EntitySet="Pembayarans" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

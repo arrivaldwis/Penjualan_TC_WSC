@@ -1,0 +1,13 @@
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\bin\Debug\Penjualan.exe.config
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\bin\Debug\Penjualan.exe
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\bin\Debug\Penjualan.pdb
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\bin\Debug\EntityFramework.dll
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\bin\Debug\EntityFramework.xml
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\obj\Debug\Penjualan.csprojResolveAssemblyReference.cache
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\obj\Debug\Penjualan.frmMain.resources
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\obj\Debug\Penjualan.Properties.Resources.resources
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\obj\Debug\Penjualan.csproj.GenerateResource.Cache
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\obj\Debug\Penjualan.exe
+c:\users\itss-wsc\documents\visual studio 2015\Projects\Penjualan\Penjualan\obj\Debug\Penjualan.pdb

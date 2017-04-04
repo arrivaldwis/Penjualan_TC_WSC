@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_penjualanModelStoreContainer" CdmEntityContainer="db_penjualanEntities">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="db_penjualanModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pembayarans">
+      <EntityTypeMapping TypeName="db_penjualanModel.Pembayaran">
+        <MappingFragment StoreEntitySet="Pembayaran">
+          <ScalarProperty Name="tgl_pembayaran" ColumnName="tgl_pembayaran" />
+          <ScalarProperty Name="total_bunga" ColumnName="total_bunga" />
+          <ScalarProperty Name="id_pembayaran" ColumnName="id_pembayaran" />
+          <ScalarProperty Name="no_faktur" ColumnName="no_faktur" />
+          <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+          <ScalarProperty Name="jumlah_pembayaran" ColumnName="jumlah_pembayaran" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transaksis">
+      <EntityTypeMapping TypeName="db_penjualanModel.Transaksi">
+        <MappingFragment StoreEntitySet="Transaksi">
+          <ScalarProperty Name="no_faktur" ColumnName="no_faktur" />
+          <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+          <ScalarProperty Name="tgl_penjualan" ColumnName="tgl_penjualan" />
+          <ScalarProperty Name="tgl_deadline" ColumnName="tgl_deadline" />
+          <ScalarProperty Name="total_biaya" ColumnName="total_biaya" />
+          <ScalarProperty Name="bunga" ColumnName="bunga" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_penjualanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="id_customer" />
+    </Key>
+    <Property Name="id_customer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Pembayaran">
+    <Key>
+      <PropertyRef Name="id_pembayaran" />
+    </Key>
+    <Property Name="id_pembayaran" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="no_faktur" Type="int" Nullable="false" />
+    <Property Name="id_customer" Type="int" Nullable="false" />
+    <Property Name="jumlah_pembayaran" Type="int" Nullable="false" />
+    <Property Name="total_bunga" Type="int" Nullable="false" />
+    <Property Name="tgl_pembayaran" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transaksi">
+    <Key>
+      <PropertyRef Name="no_faktur" />
+    </Key>
+    <Property Name="no_faktur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_customer" Type="int" Nullable="false" />
+    <Property Name="tgl_penjualan" Type="date" Nullable="false" />
+    <Property Name="tgl_deadline" Type="date" Nullable="false" />
+    <Property Name="total_biaya" Type="int" Nullable="false" />
+    <Property Name="bunga" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Pembayaran_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Pembayaran" Type="Self.Pembayaran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id_customer" />
+      </Principal>
+      <Dependent Role="Pembayaran">
+        <PropertyRef Name="id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pembayaran_Transaksi">
+    <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="1" />
+    <End Role="Pembayaran" Type="Self.Pembayaran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaksi">
+        <PropertyRef Name="no_faktur" />
+      </Principal>
+      <Dependent Role="Pembayaran">
+        <PropertyRef Name="no_faktur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaksi_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Transaksi" Type="Self.Transaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id_customer" />
+      </Principal>
+      <Dependent Role="Transaksi">
+        <PropertyRef Name="id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_penjualanModelStoreContainer">
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pembayaran" EntityType="Self.Pembayaran" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transaksi" EntityType="Self.Transaksi" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Pembayaran_Customer" Association="Self.FK_Pembayaran_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Pembayaran" EntitySet="Pembayaran" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pembayaran_Transaksi" Association="Self.FK_Pembayaran_Transaksi">
+      <End Role="Transaksi" EntitySet="Transaksi" />
+      <End Role="Pembayaran" EntitySet="Pembayaran" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaksi_Customer" Association="Self.FK_Transaksi_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Transaksi" EntitySet="Transaksi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

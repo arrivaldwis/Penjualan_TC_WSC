@@ -1,0 +1,8 @@
+pembayaran
+customer beli barang ke distributor
+setiap customer, ada tempo pembayaran 
+
+2000
+1 1500 150 -10
+2 3000
+
